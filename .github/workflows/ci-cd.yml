@@ -17,7 +17,7 @@ jobs:
         run: |-
           echo "build with unit tests"
   build-docker:
-    if: ${{ github.ref == 'refs/heads/main') }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     name: Build docker
     runs-on: ubuntu-latest
     steps:

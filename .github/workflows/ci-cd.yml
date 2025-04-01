@@ -19,7 +19,8 @@ jobs:
           cat output
   deploy-dev:
     name: Deploy
-    needs: build-test
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: build-docker
     runs-on: ubuntu-latest
     environment: dev
     steps:

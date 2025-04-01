@@ -15,7 +15,17 @@ jobs:
         uses: actions/checkout@v4
       - name: Build
         run: |-
-          echo "build with unit tests"
+          echo "build with unit tests" > output
+          cat output
+  deploy:
+    name: Deploy
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: |-
+          echo "deploy"
+          cat output
   build-docker:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: Build docker

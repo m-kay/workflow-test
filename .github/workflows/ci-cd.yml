@@ -17,15 +17,15 @@ jobs:
         run: |-
           echo "build with unit tests" > output
           cat output
-  deploy:
+  deploy-dev:
     name: Deploy
     needs: build-test
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: Deploy
         run: |-
-          echo "deploy"
-          cat output
+          echo "deploy to dev"
   build-docker:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: Build docker

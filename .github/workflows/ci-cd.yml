@@ -1,0 +1,37 @@
+name: CI/CD Build Workflow
+
+on: 
+  push:
+    paths-ignore:
+      - "**/*.md"
+
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        run: |-
+          echo "build with unit tests" > output
+          cat output
+  deploy-dev:
+    name: Deploy
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: build-docker
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Deploy
+        run: |-
+          echo "deploy to dev"
+  build-docker:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    name: Build docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: |-
+          echo "build docker image"

@@ -1,0 +1,15 @@
+on:
+  workflow_call:
+    inputs:
+      runIntegrationTests:
+        default: true
+        type: boolean
+
+jobs:
+  conditional-job:
+    name: Job only runs with condition=true
+    runs-on: ubuntu-latest
+    if: ${{ inputs.runIntegrationTests }}
+    steps:
+      - name: print-files
+        run: ls -al condition/

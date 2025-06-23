@@ -6,17 +6,11 @@ on:
       - "**/*.md"
   workflow_dispatch: {}
 
+  
 jobs:
-  conditional-job:
-    name: Job only runs with condition=true
-    runs-on: ubuntu-latest
-    steps:
-      - name: check-condition
-        if: ${{ hashFiles('condition/') != '' }}
-        run: echo 'test'
-      - name: print-files
-        if: steps.check-condition.outcome == 'success'
-        run: ls -al condition/
+  test:
+    name: Test
+    uses: test.yaml
   build-test:
     name: Build and Test
     runs-on: ubuntu-latest

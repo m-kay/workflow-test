@@ -7,6 +7,14 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  conditional-job:
+    name: Job only runs with condition=true
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-condition
+        if: ${{ hashFiles('condition/') != '' }}
+      - name: print-files
+        run: ls -al condition/
   build-test:
     name: Build and Test
     runs-on: ubuntu-latest

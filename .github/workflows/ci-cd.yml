@@ -15,6 +15,7 @@ jobs:
         if: ${{ hashFiles('condition/') != '' }}
         run: echo 'test'
       - name: print-files
+        if: success() || failure()
         run: ls -al condition/
   build-test:
     name: Build and Test

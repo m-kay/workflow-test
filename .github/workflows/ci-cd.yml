@@ -12,7 +12,7 @@ jobs:
     name: Test
     uses: ./.github/workflows/test.yaml
     with:
-      runIntegrationTest: false
+      runIntegrationTests: false
   build-test:
     name: Build and Test
     runs-on: ubuntu-latest

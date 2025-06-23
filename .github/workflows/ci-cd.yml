@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: check-condition
         if: ${{ hashFiles('condition/') != '' }}
+        run: echo 'test'
       - name: print-files
         run: ls -al condition/
   build-test:
